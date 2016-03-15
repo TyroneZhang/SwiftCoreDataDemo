@@ -1,0 +1,2 @@
+# SwiftCoreDataDemo
+CoreData in swift
