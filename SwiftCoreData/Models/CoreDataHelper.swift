@@ -11,18 +11,6 @@ import CoreData
 
 class CoreDataHelper: NSObject {
     
-    class var shared: CoreDataHelper {
-        dispatch_once(&Inner.token) { () -> Void in
-            Inner.instance = CoreDataHelper()
-        }
-        return Inner.instance!
-    }
-    
-    struct Inner {
-        static var instance: CoreDataHelper?
-        static var token: dispatch_once_t = 0
-    }
-    
     // MARK: - Core Data stack
     
     lazy var applicationDocumentsDirectory: NSURL = {
@@ -86,4 +74,17 @@ class CoreDataHelper: NSObject {
         }
     }
     
+    
+    // MARK: - Instance
+    class var shared: CoreDataHelper {
+        dispatch_once(&Inner.token) { () -> Void in
+            Inner.instance = CoreDataHelper()
+        }
+        return Inner.instance!
+    }
+    
+    struct Inner {
+        static var instance: CoreDataHelper?
+        static var token: dispatch_once_t = 0
+    }
 }

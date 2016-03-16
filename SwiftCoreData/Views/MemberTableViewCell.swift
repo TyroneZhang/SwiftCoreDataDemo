@@ -28,7 +28,7 @@ class MemberTableViewCell: UITableViewCell {
     func configureCell(member: Member) {
         self.nameLabel.text = member.name
         self.sexLabel.text = member.sex
-        self.birthdayLabel.text = member.birthday?.description
+        self.birthdayLabel.text = member.birthday
     }
 
 }

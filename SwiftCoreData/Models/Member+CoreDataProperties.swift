@@ -13,8 +13,8 @@ import Foundation
 import CoreData
 
 extension Member {
-
-    @NSManaged var birthday: NSDate?
+    
+    @NSManaged var birthday: String?
     @NSManaged var name: String?
     @NSManaged var sex: String?
     @NSManaged var family: Family?

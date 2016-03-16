@@ -11,12 +11,24 @@ import UIKit
 class HomeTableViewController: UITableViewController {
 
     var families:[Family] = []
+    var currentSelectedIndex: NSInteger = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
+            if let array = Family.fetchFamilyModels() {
+                for object in  array {
+                    self.families.append(object)
+                }
+                dispatch_sync(dispatch_get_main_queue(), { () -> Void in
+                    self.tableView.reloadData()
+                })
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -44,6 +56,7 @@ class HomeTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        self.currentSelectedIndex = indexPath.row
         self.performSegueWithIdentifier("showFamilyMembers", sender: nil)
     }
 
@@ -59,34 +72,21 @@ class HomeTableViewController: UITableViewController {
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            // Delete the row from the data source
-//            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+            Family.deleteFamily(self.families[indexPath.row])
+            self.families.removeAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        }
     }
-
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
+    
     
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showFamilyMembers" {
+            let controller:FamilyTableViewController = segue.destinationViewController as! FamilyTableViewController
+            controller.family = self.families[self.currentSelectedIndex]
+        }
     }
 
     
@@ -102,7 +102,13 @@ class HomeTableViewController: UITableViewController {
             
         }))
         alertController.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Default, handler: { (alertAction) -> Void in
-            
+            let name = alertController.textFields![0].text
+            let address = alertController.textFields![1].text
+            let family = Family.saveFamilyModel(name, address: address, members: nil)
+            if family != nil {
+                self.families.append(family!)
+                self.tableView.reloadData()
+            }
         }))
         self.presentViewController(alertController, animated: true, completion: nil)
     }

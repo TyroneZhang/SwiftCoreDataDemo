@@ -22,6 +22,7 @@
 		5F69DA9D1C97FC8500C11054 /* Member+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F69DA991C97FC8500C11054 /* Member+CoreDataProperties.swift */; };
 		5F69DA9E1C97FC8500C11054 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F69DA9A1C97FC8500C11054 /* Member.swift */; };
 		5F69DAA11C9800AD00C11054 /* UITableViewAssistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F69DAA01C9800AD00C11054 /* UITableViewAssistant.swift */; };
+		5F69DAA31C99093C00C11054 /* AddMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F69DAA21C99093C00C11054 /* AddMemberViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		5F69DA991C97FC8500C11054 /* Member+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Member+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		5F69DA9A1C97FC8500C11054 /* Member.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
 		5F69DAA01C9800AD00C11054 /* UITableViewAssistant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewAssistant.swift; sourceTree = "<group>"; };
+		5F69DAA21C99093C00C11054 /* AddMemberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMemberViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 			children = (
 				5F69DA841C97FA3F00C11054 /* HomeTableViewController.swift */,
 				5F69DA861C97FA5400C11054 /* FamilyTableViewController.swift */,
+				5F69DAA21C99093C00C11054 /* AddMemberViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -215,6 +218,7 @@
 				5F69DA8C1C97FAA900C11054 /* MemberTableViewCell.swift in Sources */,
 				5F69DA4E1C97E61800C11054 /* AppDelegate.swift in Sources */,
 				5F69DA9B1C97FC8500C11054 /* Family+CoreDataProperties.swift in Sources */,
+				5F69DAA31C99093C00C11054 /* AddMemberViewController.swift in Sources */,
 				5F69DA9D1C97FC8500C11054 /* Member+CoreDataProperties.swift in Sources */,
 				5F69DA9E1C97FC8500C11054 /* Member.swift in Sources */,
 			);
@@ -377,6 +381,7 @@
 				5F69DA611C97E61800C11054 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
