@@ -75,6 +75,12 @@ class HomeTableViewController: UITableViewController {
             Family.deleteFamily(self.families[indexPath.row])
             self.families.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            let members = Member.fetchRemainMembers()
+            if members?.count == 0 {
+                print("there have no members!")
+            } else {
+                print(members)
+            }
         }
     }
     
